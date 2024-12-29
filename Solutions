@@ -1,0 +1,156 @@
+Problem 1: Isomorphic String
+
+Solution: 
+
+
+import java.util.*;
+
+
+
+
+
+
+
+public class Main {
+
+
+
+    public static void main(String[] args) {
+
+
+        String st1 = "xyz";
+        String st2 = "aab";
+        if(Isomorphic(st1, st2)){
+            System.out.println("True");
+        }
+        else{
+            System.out.println("False");
+        }
+
+        }
+
+    private static boolean Isomorphic(String st1, String st2) {
+        if(st1.length() != st2.length()){
+            return false;
+        }
+        HashMap<Character, Character> map1 = new HashMap<>();
+        HashMap<Character, Character> map2 = new HashMap<>();
+
+        for(int i=0;i<st2.length();i++){
+            char c1 = st1.charAt(i);
+            char c2 = st2.charAt(i);
+
+            if(map1.containsKey(c1)){
+                if(map1.get(c1) != c2){
+                    return false;
+                }
+
+            }
+            else{
+                map1.put(c1,c2);
+            }
+            if(map2.containsKey(c2)){
+                if(map2.get(c2) != c1){
+                   return false;
+                }
+            } else{
+                map2.put(c2,c1);
+            }
+        }
+        return true;
+    }
+
+
+}
+
+Problem 2: BST
+Solution:
+
+
+
+import sun.reflect.generics.tree.Tree;
+
+import java.util.*;
+
+
+
+class TreeNode{
+    int val;
+    TreeNode left, right;
+
+    TreeNode(int val){
+        this.val = val;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+
+
+public class Main {
+    int sum = 0;
+    public void SumTree(TreeNode root){
+        if(root == null){
+            return;
+        }
+        SumTree(root.right);
+
+        int originalValue = root.val;
+        root.val= sum;
+        sum+=originalValue;
+
+        SumTree(root.left);
+    }
+
+
+
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(11);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(29);
+        root.left.left = new TreeNode(1);
+        root.left.right = new TreeNode(7);
+        root.right.left = new TreeNode(15);
+        root.right.right = new TreeNode(40);
+        root.right.right.left = new TreeNode(35);
+
+        Main converter =new Main();
+
+        converter.SumTree(root);
+
+        }
+
+    private static boolean Isomorphic(String st1, String st2) {
+        if(st1.length() != st2.length()){
+            return false;
+        }
+        HashMap<Character, Character> map1 = new HashMap<>();
+        HashMap<Character, Character> map2 = new HashMap<>();
+
+        for(int i=0;i<st2.length();i++){
+            char c1 = st1.charAt(i);
+            char c2 = st2.charAt(i);
+
+            if(map1.containsKey(c1)){
+                if(map1.get(c1) != c2){
+                    return false;
+                }
+
+            }
+            else{
+                map1.put(c1,c2);
+            }
+            if(map2.containsKey(c2)){
+                if(map2.get(c2) != c1){
+                   return false;
+                }
+            } else{
+                map2.put(c2,c1);
+            }
+        }
+        return true;
+    }
+
+
+}
+
